@@ -54,7 +54,6 @@ samp <-
 samp[samp$c_change < 0,]$c_change |> sum(na.rm = T) == samp$dw_pool[9] + samp$emissions_pool[9] - 12.8
 samp[samp$c_change < 0,]$c_change
 samp$fire_emissions = c(0,0,0,0,rep(-12.8,5))
-samp$fire_emissions = c(0,0,0,0,-12.8,0,0,0,0)
 samp$neg_change <- dplyr::if_else(samp$c_change < 0, samp$c_change, 0)
 samp$neg_change <- dplyr::if_else(is.na(samp$neg_change),0,samp$neg_change)
 samp$cum_loss = cumsum(samp$neg_change)
@@ -69,8 +68,8 @@ samp |> tidyr::pivot_longer(cols = c('emissions_pool','dw_pool','fire_emissions'
 
 #live wood graph / deadwood graph, both as time series
 #fire vs deadwood pool decay wildfire emissions pulse
-lm(carbon ~ obs_year,)
-colnames(samp)
+samp$fire_emissions = c(0,0,0,0,-12.8,0,0,0,0)
+
 ggplot() + geom_point(data = samp, aes (x = obs_year, y = carbon, shape = area, color = area), alpha= .4) +
   geom_point(data = samp, aes (x = obs_year, y = -dw_pool, shape = area, color = area), alpha = .4) + theme_bw() +
   # facet_grid(~area) + 
