@@ -61,7 +61,7 @@ samp$cum_loss = cumsum(samp$neg_change)
 samp |> tidyr::pivot_longer(cols = c('emissions_pool','dw_pool','fire_emissions')) |>
   ggplot() +
   geom_bar(aes(x = obs_year, y = value, fill = name), stat = 'identity')+
-  geom_line(aes(x = obs_year, y = cum_loss), size = 2) +
+#  geom_line(aes(x = obs_year, y = cum_loss), size = 2) +
   theme_bw() + 
   tidyquant::scale_fill_tq(theme = 'dark') +
   ylab('Lost Carbon')

@@ -171,3 +171,4 @@ samples <-
 
 samples[!is.na(samples$cbi),]
 write.csv(samples, '/Users/eyackulic/Downloads/proj47509_sample.csv')
+samples <- read.csv( '/Users/eyackulic/Downloads/proj47509_sample.csv')
